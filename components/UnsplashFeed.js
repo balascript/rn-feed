@@ -35,7 +35,10 @@ function useUnsplashPhotos(keyword) {
 }
 
 export const UnsplashFeed = props => {
-  const [photos, fetchMore] = useUnsplashPhotos('dogs');
+  const { tag } = props;
+
+  console.log(tag);
+  const [photos, fetchMore] = useUnsplashPhotos(tag);
 
   const renderItem = ({ item, index }) => {
     const { uri } = item;

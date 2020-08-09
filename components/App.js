@@ -12,11 +12,7 @@ import { SafeAreaView, StyleSheet, StatusBar } from 'react-native';
 import { UnsplashFeed } from './UnsplashFeed';
 
 const App = () => {
-  return (
-    <SafeAreaView>
-      <UnsplashFeed />
-    </SafeAreaView>
-  );
+  return <UnsplashFeed tag="dogs" />;
 };
 
 const styles = StyleSheet.create({
