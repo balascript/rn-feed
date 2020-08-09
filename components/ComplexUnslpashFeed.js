@@ -22,7 +22,7 @@ export const ComplexUnsplashFeed = props => {
         return <Tabs selectedTag={selectedTag} setTag={setTag} />;
       }
 
-      return <Text>{`HI- ${selectedTag}`}</Text>;
+      return <UnsplashFeed tag={selectedTag} />;
     },
     [selectedTag],
   );
@@ -35,6 +35,7 @@ export const ComplexUnsplashFeed = props => {
         renderItem={renderItem}
         getItem={(data, index) => data[index]}
         getItemCount={data => data.length}
+        stickyHeaderIndices={[0]}
       />
     </View>
   );
@@ -52,6 +53,7 @@ const Tabs = props => {
         justifyContent: 'center',
         alignItems: 'center',
         pointerEvents: 'box-none',
+        backgroundColor: 'white',
       }}>
       {TAGS.map(tag => {
         const isTagSelected = tag === selectedTag;
