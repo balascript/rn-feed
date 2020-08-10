@@ -15,6 +15,7 @@
     "unsplash-js": "^6.0.0"
   },
   "devDependencies": {
+    "logkitty": ">=0.7.1",
     "@babel/core": "^7.6.2",
     "@babel/runtime": "^7.6.2",
     "@react-native-community/eslint-config": "^0.0.5",
