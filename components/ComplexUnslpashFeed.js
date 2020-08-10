@@ -14,10 +14,32 @@ const TAGS = ['dogs', 'cats'];
 export const ComplexUnsplashFeed = props => {
   const [selectedTag, setTag] = useState(TAGS[0]);
 
-  const data = useMemo(() => [TAGS, selectedTag], [selectedTag]);
+  const data = useMemo(() => ['Helloo', TAGS, selectedTag], [selectedTag]);
 
   const renderItem = useCallback(
     ({ item, index }) => {
+      if (index === 0) {
+        return (
+          <View
+            style={{
+              height: 50,
+              width: '100%',
+              justifyContent: 'center',
+              alignItems: 'stretch',
+              flexDirection: 'row',
+            }}>
+            <View
+              style={{
+                flex: 1,
+                backgroundColor: 'black',
+                alignItems: 'center',
+                justifyContent: 'center',
+              }}>
+              <Text style={{ color: 'white' }}>{'hELLOOOO'}</Text>
+            </View>
+          </View>
+        );
+      }
       if (Array.isArray(item)) {
         return <Tabs selectedTag={selectedTag} setTag={setTag} />;
       }
@@ -35,7 +57,7 @@ export const ComplexUnsplashFeed = props => {
         renderItem={renderItem}
         getItem={(data, index) => data[index]}
         getItemCount={data => data.length}
-        stickyHeaderIndices={[0]}
+        stickyHeaderIndices={[1]}
         overScrollMode="never"
       />
     </View>
