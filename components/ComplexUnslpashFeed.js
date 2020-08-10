@@ -36,6 +36,7 @@ export const ComplexUnsplashFeed = props => {
         getItem={(data, index) => data[index]}
         getItemCount={data => data.length}
         stickyHeaderIndices={[0]}
+        overScrollMode="never"
       />
     </View>
   );
