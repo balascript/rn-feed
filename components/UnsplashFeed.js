@@ -1,4 +1,4 @@
-import React, { useEffect, useCallback, useState } from 'react';
+import React, { useEffect, useCallback, useState, memo } from 'react';
 import { fetchPhotosForKeyword, fetchPhotos } from '../helpers/unsplash';
 import { FlatList, Image, Text, View } from 'react-native';
 
@@ -41,7 +41,12 @@ function useUnsplashPhotos(keyword) {
   return [photos, setTag, fetchMore];
 }
 
-export const UnsplashFeed = props => {
+const viewabilityConfig = {
+  itemVisiblePercentThreshold: 100,
+  minimumViewTime: 100,
+};
+
+export const UnsplashFeed = memo(props => {
   const { tag } = props;
 
   const [photos, setTag, fetchMore] = useUnsplashPhotos(tag);
@@ -49,6 +54,10 @@ export const UnsplashFeed = props => {
   useEffect(() => {
     setTag(tag);
   }, [tag]);
+
+  const onViewableItemsChanged = useCallback(param => {
+    console.log(param);
+  }, []);
 
   const renderItem = ({ item, index }) => {
     const { uri } = item;
@@ -73,7 +82,9 @@ export const UnsplashFeed = props => {
         renderItem={renderItem}
         keyExtractor={item => item.key}
         onEndReachedThreshold={0.9}
+        onViewableItemsChanged={onViewableItemsChanged}
+        viewabilityConfig={viewabilityConfig}
       />
     </View>
   );
-};
+});
